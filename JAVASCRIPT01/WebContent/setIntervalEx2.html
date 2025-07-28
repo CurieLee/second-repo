@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>setIntervalEx2</title>
+		<style>
+			div {	
+				margin: 0 auto;
+				width: 100%;
+				text-align: center;
+			}
+		</style>
+		<script type="text/javascript">
+			var count = 1;
+			var countNum = 10;
+			
+			function startCount() {
+				timerID = setInterval('showCount()', 500);
+			}
+			
+			function showCount() {
+				countH1.innerHTML = countNum;
+				bombImg.src = "image/bomb" + count + ".jpg";
+				
+				count++;
+				countNum--;
+				
+				if (count == 12) {	
+					clearInterval(timerID);
+					count = 1;
+					countNum = 10;
+				}
+				
+			}
+		
+		</script>
+	</head>
+	<body>
+		<div>
+			<h1 id="countH1">10</h1>
+			<p><img id='bombImg' src='image/bomb1.jpg'></p>
+			<button onClick="startCount()" >카운트다운 시작</button> 
+		</div>
+	</body>
+</html>

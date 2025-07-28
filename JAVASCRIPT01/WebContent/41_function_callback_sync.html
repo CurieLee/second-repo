@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>41_function_callback_sync</title>
+		<script type="text/javascript">	
+		 	//동기적 실행
+		 	var callback = function() {
+		 		console.log("콜백함수 호출됨");
+		 	};
+		 	
+		 	function show(callback) {
+		 		callback();
+		 	}
+		 	
+		 	console.log("콜백함수 호출 전");
+		 	show(callback);
+			console.log("콜백함수 호출 후");
+			
+		</script>
+	</head>
+	<body>
+	
+	</body>
+</html>

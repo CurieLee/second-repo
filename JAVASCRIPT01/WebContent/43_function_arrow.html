@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>43_function_arrow</title>
+		<script type="text/javascript">	
+			//화살표 함수 선언형식
+			//function 예약어 대신 화살표로 함수를 선언함
+			
+			//how
+			// () => {함수코드 블럭} //매개변수가 없는 경우
+			// x => {함수코드 블럭} //매개변수가 한 개인 경우
+			// (x, y) => {함수코드 블럭}
+
+			//함수코드 블럭
+			// x => return  * ;
+			
+			let sayHi = () => alert("안녕하세요! ");
+			let sayHi2 = function() { alert("안녕하세요! ")};
+			
+			sayHi();
+			
+			let number = [1, 2, 3, 4, 5];
+			
+			number.forEach(x=> {
+				console.log(x * 2);
+			});
+			
+		</script>
+	</head>
+	<body>
+	
+	</body>
+</html>

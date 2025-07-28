@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>function paramRet</title>
+		<script type="text/javascript">	
+			function input() {
+				var num = new Array(5);
+				for (var i = 0; i < num.length; i++)
+					num[i] = Number(prompt("숫자 입력: "));
+				
+				document.write("최댓값은 " + max(num));
+				
+			}
+			
+			function max(arr) {
+				var max = 0;
+				for (var i = 0; i < arr.length; i++) {
+					if (max < arr[i])
+						max = arr[i];
+				}
+				
+				return max;
+			}
+		</script>
+	</head>
+	<body>
+		<button onClick="input()">최댓값 구하기</button> 
+	</body>
+</html>

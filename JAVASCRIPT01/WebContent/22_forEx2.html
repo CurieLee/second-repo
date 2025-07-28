@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>for문 연습2</title>
+		<style>
+			th {	background-color: #ff0; }
+			td {
+				width: 100px;	
+				text-align: center;
+			}
+		</style>
+		<script type="text/javascript">	
+			var sum = 0;
+			
+			document.write("<table border=\"1\">");
+			document.write("<tr>");
+	        document.write("<th>i</th>");
+	        document.write("<th>sum</th>");
+	        document.write("</tr>");
+			
+			for (var i = 0; i < 10;) {
+				sum += ++i;
+				
+				document.write("<tr>");
+		        document.write("<td>" + i + "</td>");
+		        document.write("<td>" + sum + "</td>");
+		        document.write("</tr>");
+			}
+			
+			document.write("</table>");
+			
+		</script>
+	</head>
+	<body>
+	
+	</body>
+</html>

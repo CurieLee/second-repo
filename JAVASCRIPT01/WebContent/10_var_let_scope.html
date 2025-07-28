@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>var와 let : scope 차이</title>
+		<script type="text/javascript">
+			function test() {
+				var x = 10;
+				if (x = 10)
+					var a = 100;
+				consol.log(a);
+			}
+			test();
+			
+			function test2() {
+				let x = 10;
+				if(x = 10)
+					let a = 200;
+				console.log(a);
+			}
+			test2();
+			
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

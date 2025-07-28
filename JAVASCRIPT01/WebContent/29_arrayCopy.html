@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript">	
+			//배열 얕은복사 (==사용)-> 배열 참조 주소 공유
+			var arr = [1, 2, 3];
+			var arrCopy = arr;
+			
+			console.log("원본: " + arr);
+			console.log("복사본: " + arrCopy);
+			
+			console.log(arr == arrCopy);
+			
+			console.log("변경 후");
+			arr[0] = 100;
+			arrCopy[2] = 300;
+			
+			console.log("원본: " + arr);
+			console.log("복사본: " + arrCopy);
+			
+			//배열 깊은복사
+			//1 배열생성 2 원본 배열의 원소값을 모두 1번에서 생성된 배열의 원소값 대입
+			//var arrCopy = new Array();
+			///for (i = 0; i < arr.length; i++) {
+			//	arrCopy[i] = arr[i];
+			//}
+			
+			
+			
+		
+		</script>
+	</head>
+	<body>
+	
+	</body>
+</html>

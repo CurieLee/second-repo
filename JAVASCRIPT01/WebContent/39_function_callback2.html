@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript">	
+			function endFunction() {
+				console.log("END");
+			}
+			
+			function showName(name, func) {
+				console.log("name: ", name);
+				func();
+			}
+			
+			showname('성춘향', endFunction); //일반함수를 활용해 콜백함수로 전달-> 함수명만 전달
+			showname('성춘향', endFunction()); //endFunction()호출 후 showName 호출
+		</script>
+	</head>
+	<body>
+	
+	</body>
+</html>
