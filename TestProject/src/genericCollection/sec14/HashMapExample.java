@@ -11,18 +11,16 @@ public class HashMapExample {
 		
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.println("영어단어=한글단어 형태로 사전에 등록할 단어를 입력하세요");
-		System.out.println("(종료하려면 exit)");
-		
 		while (true) {
-			
+			System.out.println("영어단어=한글단어 형태로 사전에 등록할 단어를 입력하세요");
+			System.out.println("(종료하려면 exit)");
 			String input = scan.nextLine();
 			
 			if (input.equals("exit"))
 				break;
 			
 			String[] word = input.split("=");
-			map.put(word[0], word[1]);
+			map.put(word[0].trim(), word[1].trim()); // 예외처리도 필요함
 		}
 	
 		// HashMap에 입력된 영단어 검색 로직 구현
@@ -31,13 +29,15 @@ public class HashMapExample {
 		
 		while (true) {
 			System.out.print("찾고 싶은 단어는? ");
-			String input = scan.next();
+			String input = scan.nextLine();
 			
 			if (input.equals("exit"))  {
 				System.out.println("종료합니다.");
 				break;
 			}
 			
+			// String key = map.get(input);
+			// if (key == null)
 			if (map.containsKey(input))
 				System.out.println(map.get(input));
 			else
