@@ -1,6 +1,6 @@
 package oopException.sec02;
 
-public class TryCatch {
+public class TryCatchEx1 {
 	
 	public static void main(String[] args) {
 		// try~catch~finally
