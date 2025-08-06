@@ -4,9 +4,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Guess {
-	private int com;
-	private int user;
-	
 	public Guess() {
 		Scanner scan = new Scanner(System.in);
 		
@@ -18,17 +15,20 @@ public class Guess {
 		System.out.println("------------------------------------");
 		System.out.print("숫자 입력: ");
 		
+		Random rand = new Random();
+		int answer = rand.nextInt(10) + 1;
+		int guess;
+		
 		while (true) {
-			com = getCom();
-			user = scan.nextInt();
-			if (user < 1 || 10 < user) {
+			guess = scan.nextInt();
+			if (guess < 1 || 10 < guess) {
 				System.out.println("잘못된 입력값 입니다. 다시 입력 해주세요.");
 				continue;
 			}
 			
-			if (G(com, user) == true)  {
+			if (G(answer, guess) == true)  {
 				System.out.println("------------------------------------");
-				System.out.println("맞았습니다. 나의 숫자는 " + user + " 입니다.");
+				System.out.println("맞았습니다. 나의 숫자는 " + guess + " 입니다.");
 				System.out.println("------------------------------------");
 				break;
 			}
@@ -38,13 +38,6 @@ public class Guess {
 				System.out.print("다시 입력: ");
 			}
 		}
-	}
-	
-	public int getCom() {
-		Random rand = new Random();
-		com = rand.nextInt(10) + 1;
-		
-		return com;
 	}
 	
 	public boolean G(int com, int user) {
