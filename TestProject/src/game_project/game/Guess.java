@@ -15,18 +15,27 @@ public class Guess {
 		System.out.println("------------------------------------");
 		System.out.print("숫자 입력: ");
 		
+		// 1~10 사이 랜덤 숫자 생성
 		Random rand = new Random();
 		int answer = rand.nextInt(10) + 1;
-		int guess;
 		
 		while (true) {
-			guess = scan.nextInt();
-			if (guess < 1 || 10 < guess) {
-				System.out.println("잘못된 입력값 입니다. 다시 입력 해주세요.");
+			int guess;
+			try {
+				guess = Integer.parseInt(scan.nextLine()); // 사용자 입력값 저장 변수
+			} catch (NumberFormatException e) { // 입력값 예외 처리
+				System.out.println("숫자만 입력 가능합니다. 다시 입력해주세요.");
 				continue;
 			}
 			
-			if (G(answer, guess) == true)  {
+			// 사용자 입력값 검증 범위 외 숫자 재입력
+			if (guess < 1 || 10 < guess) {
+				System.out.println("잘못된 입력값 입니다. 1~10 사이의 숫자를 입력해주세요.");
+				continue;
+			}
+			
+			// 정답 비교함수 isCorrect
+			if (isCorrect(answer, guess) == true)  {
 				System.out.println("------------------------------------");
 				System.out.println("맞았습니다. 나의 숫자는 " + guess + " 입니다.");
 				System.out.println("------------------------------------");
@@ -40,9 +49,8 @@ public class Guess {
 		}
 	}
 	
-	public boolean G(int com, int user) {
-		if (com == user)	return true;
-		else				return false;
+	public boolean isCorrect(int answer, int guess) {
+		return answer == guess;
 	}
 	
 

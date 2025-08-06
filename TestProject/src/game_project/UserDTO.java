@@ -35,6 +35,7 @@ public class UserDTO {
 		this.userName = userName;
 	}
 	
+	// UserID/UserName 이 같으면 같은 사람-> 추가하지 않음
 	@Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -48,6 +49,7 @@ public class UserDTO {
         return (userID + userName).hashCode();
     }
 
+    // user 확인용
     @Override
     public String toString() {
         return "UserDTO [userID=" + userID + ", userPWD=" + userPWD + ", userName=" + userName + "]";
