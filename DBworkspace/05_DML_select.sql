@@ -200,6 +200,7 @@ SELECT SUM(BOOKSTOCK) AS "총 재고량" FROM BOOK;
 
 -- 모든 컬럼은 컬럼의 별명 생성 가능 AS
 -- 컬럼 AS "별명"
+-- 별명에 공백이 있으면 반드시 "" 사용해야함
 
 -- 2번 고객이 주문한 총 도서주문
 SELECT SUM(BSQTY) AS "총 주문수량" 
@@ -219,3 +220,107 @@ WHERE CLIENTNO='2';
 SELECT SUM(BSQTY) AS "총 주문수량", AVG(BSQTY) AS "평균 주문수량"
 FROM BOOKSALE
 WHERE CLIENTNO='2';
+
+-- 도서판매 현황 중 주문 권수가 가장 많은 권수, 가장 적은 권수
+SELECT MAX(BSQTY) AS 최대주문량, MIN(BSQTY) AS 최소주문량 FROM BOOKSALE;
+
+-- 서점에 있는 도서의 전체 가격 총액, 평균가격, 최고가, 최저가 확인
+SELECT SUM(BOOKPRICE) AS 가격총액,
+       AVG(BOOKPRICE) AS 평균가격,
+       MAX(BOOKPRICE) AS 최고가,
+       MIN(BOOKPRICE) AS 최저가
+FROM BOOK;     
+
+-- 도서 판매 테이블에서 도서판매 건수 조회
+-- BSDATE 가 NULL 을 허용하거나 값이 중복되는 칼럼이라면 COUNT 가 원하는 목적으로 반환하지 않을 가능성
+SELECT COUNT(BSDATE) AS 판매건수 FROM BOOKSALE;
+
+-- 특정 필드 갑싀 수가 아닌 튜플의 수를 세고자 하면 COUNT(*) 활용 
+SELECT COUNT(*) AS 판매건수 FROM BOOKSALE;
+
+-- 고객 테이블에서 총 취미의 개수 출력: 취미를 제공한 고객 수
+SELECT COUNT(CLIENTHOBBY) AS "취미" FROM CLIENT;
+
+-- 서점의 총 고객수는 몇명인가?
+SELECT COUNT(*) AS 총고객수 FROM CLIENT;
+
+
+------------------------------------------------------------------------
+
+-- GROUP BY <속성>
+-- 그룹에 대한 질의를 기술
+-- 특정 열(속성)의 값을 기준으로 동일한 값의 데이터 끼리 그룹 구성
+-- 각 그룹에 대해 한행씩 질의 결과 생성
+
+-- 각 도서 번호별 판매수량 확인
+-- GROUP BY 진행한 경우 SELECT 절에 집계함수를 통해 필요열의 집계 진행 가능
+-- GROUP BY 기준이 되면 SELECT 절에 포함 가능 (BOOKNO)
+SELECT SUM(BSQTY), BOOKNO
+FROM BOOKSALE
+GROUP BY BOOKNO
+ORDER BY BOOKNO;
+
+SELECT SUM(BSQTY), BOOKNO
+FROM BOOKSALE
+GROUP BY BOOKNO
+ORDER BY 1; -- SELECT 절에 첫번째 항목을 기준으로 정렬
+
+-- 각 지역별 고객의 수
+SELECT CLIENTADDRESS AS 지역, COUNT(*) AS 고객수
+FROM CLIENT
+GROUP BY CLIENTADDRESS;
+
+-- 성별에 따른 고객의 수 
+SELECT CLIENTGENDER AS 성별, COUNT(*) AS 고객수
+FROM CLIENT
+GROUP BY CLIENTGENDER;
+
+-- 성별에 따른 고객수와 고객들의 지역명
+-- GROUP BY 의 기준으로 사용한 필드는 SELECT 절에 단독 사용 불가능
+/*
+SELECT CLIENTGENDER AS 성별, COUNT(*) AS 고객수, CLIENTADDRESS AS 지역명
+FROM CLIENT
+GROUP BY CLIENTGENDER;
+*/
+
+-- 성별에 따른 지역별 고객의 수
+SELECT CLIENTGENDER AS 성별, COUNT(*) AS 고객수, CLIENTADDRESS AS 지역명
+FROM CLIENT
+GROUP BY CLIENTGENDER, CLIENTADDRESS;
+
+
+-- HAVING <검색 조건>
+-- GROUP BY 절에 의해 구성된 그룹 적용할 조건 기술
+-- 집계함수와 함께 사용
+
+-- 주의!
+-- 1 반드시 group by 절과 함께 사용
+-- 2 where 절 이후에 작성
+-- 3 검색 조건에 집계함수가 필수적
+
+-- 출판사 별 도서가격이 25000원 이상인 도서가 2권 이상인 도서 권수S
+SELECT PUBNO, COUNT(*) AS 도서합계
+FROM BOOK
+WHERE 25000 <= BOOKPRICE
+GROUP BY BOOKNO
+HAVING 2 <= COUNT(*);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
