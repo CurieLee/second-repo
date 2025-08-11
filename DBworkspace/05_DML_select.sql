@@ -298,7 +298,7 @@ GROUP BY CLIENTGENDER, CLIENTADDRESS;
 -- 2 where 절 이후에 작성
 -- 3 검색 조건에 집계함수가 필수적
 
--- 출판사 별 도서가격이 25000원 이상인 도서가 2권 이상인 도서 권수S
+-- 출판사 별 도서가격이 25000원 이상인 도서가 2권 이상인 도서 권수
 SELECT PUBNO, COUNT(*) AS 도서합계
 FROM BOOK
 WHERE 25000 <= BOOKPRICE
