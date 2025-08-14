@@ -10,9 +10,9 @@ import java.sql.SQLException;
 public class DBConnect {
 	// 데이터베이스 연결 후
 	// connection 객체를 반환하는 메소드 
-	public static Connection getConnection() {
+	public static Connection getConnection() {	
 		Connection conn = null;
-			
+		
 		try {
 			String url = "jdbc:oracle:thin:@localhost:1521:sdb";
 			String user = "SQL_USER";
@@ -118,7 +118,7 @@ public class DBConnect {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}		
-		
+	}	
+
 }
 

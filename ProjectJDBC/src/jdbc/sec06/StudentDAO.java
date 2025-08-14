@@ -21,4 +21,7 @@ public interface StudentDAO {
 	
 	// 과별 학생 검색: 0~n명 반환 기준으로 메소드 생성
 	public ArrayList<StudentDTO> searchStudent(String dptNo);
+	
+	// DB 연결 종료 메소드
+	public void closeConnection();
 }

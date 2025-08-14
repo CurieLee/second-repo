@@ -219,5 +219,9 @@ public class StudentDAOImpl implements StudentDAO {
 		}
 		return stdList;
 	}
+	
+	public void closeConnection() {
+        DBConnect.close(conn); 
+    }
 
 }

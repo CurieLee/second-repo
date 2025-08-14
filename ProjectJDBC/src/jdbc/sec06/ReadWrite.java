@@ -14,7 +14,7 @@ public class ReadWrite {
 		StudentDTO dto = null;
 		try {
 			// 학생 데이터 입력 
-			System.out.println("학생 정보 등록");
+			
 			System.out.print("학번 입력: ");
 			String stdNo = scan.nextLine();
 			
@@ -46,7 +46,7 @@ public class ReadWrite {
 	
 	// 출력 메소드
 	public static void writeStdInfo(ArrayList<StudentDTO> stdList) {
-		System.out.println("------ 전체 학생 정보 조회 ------");
+		System.out.println("---------- 전체 학생 정보 조회 ----------");
 		System.out.format("%-10s\t %-10s\t %-4s \t%13s %10s\n", 
 				"학번", "이름", "학년", "생일", "학과이름");	
 		
@@ -65,7 +65,7 @@ public class ReadWrite {
 	
 	// 출력 메소드
 	public static void writeStdInfo(StudentDTO dto) {
-		System.out.println("------ 학생 정보 조회 ------");
+		System.out.println("----------- 학생 정보 조회 -----------");
 		System.out.format("%-10s\t %-10s\t %-4s \t%13s %10s\n", 
 				"학번", "이름", "학년", "생일", "학과이름");	
 		
