@@ -15,8 +15,8 @@ public class StudentDTO {
 		this.stdNo = stdNo;
 		this.stdName = stdName;
 		this.grade = grade;
-		this.dptNo = dptNo;
 		this.stdBirth = stdBirth;
+		this.dptNo = dptNo;
 	}
 
 	public String getStdNo() {

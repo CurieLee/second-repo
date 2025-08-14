@@ -55,7 +55,13 @@ public class StudentDAOImpl implements StudentDAO {
 		// 모든 학생정보 조회
 		stdList = new ArrayList<StudentDTO> ();
 		try {
-			String sql = "SELECT * FROM student ORDER BY stdNo";
+			//String sql = "SELECT * FROM student ORDER BY stdNo";
+			// 학과번호-> 학과이름 출력
+			String sql = "SELECT S.stdno, S.stdName, S.grade, S.stdBirth, D.dptName "
+						+ "FROM student S "
+						+ "INNER JOIN department D ON D.dptNo = S.dptNo "
+						+ "ORDER BY S.stdNo";
+
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -64,10 +70,12 @@ public class StudentDAOImpl implements StudentDAO {
 				String stdName = rs.getString(2);
 				int grade = rs.getInt(3);
 				Date stdBirth = rs.getDate(4);
-				String dptNo = rs.getString(5);
+				// String dptNo = rs.getString(5);
+				String dptName = rs.getString(5);
 				
 				// 각 컬럼의 정보를 dto 로 구성
-				std = new StudentDTO(stdNo, stdName, grade, stdBirth, dptNo);
+				// std = new StudentDTO(stdNo, stdName, grade, stdBirth, dptNo);
+				std = new StudentDTO(stdNo, stdName, grade, stdBirth, dptName);
 				// ArrayList 에 추가
 				stdList.add(std);
 			}
@@ -85,7 +93,12 @@ public class StudentDAOImpl implements StudentDAO {
 	public StudentDTO detailStudent(String stdNo) {
 		// 1명 학생정보 조회
 		try {
-			String sql = "SELECT * FROM student WHERE stdNo=?";
+			// String sql = "SELECT * FROM student WHERE stdNo=?";
+			String sql = "SELECT S.stdno, S.stdName, S.grade, S.stdBirth, D.dptName "
+					+ "FROM student S "
+					+ "INNER JOIN department D ON D.dptNo = S.dptNo "
+					+ "WHERE S.stdno=? "
+					+ "ORDER BY S.stdNo";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1,  stdNo);
@@ -102,10 +115,10 @@ public class StudentDAOImpl implements StudentDAO {
 			String stdName = rs.getString(2);
 			int grade = rs.getInt(3);
 			Date stdBirth = rs.getDate(4);
-			String dptNo = rs.getString(5);
+			String dptName = rs.getString(5);
 				
 			// 각 컬럼의 정보를 dto 로 구성
-			std = new StudentDTO(stdNo, stdName, grade, stdBirth, dptNo);
+			std = new StudentDTO(stdNo, stdName, grade, stdBirth, dptName);
 			
 		} catch (SQLException e) {
 			System.out.println("오류 발생");
@@ -167,14 +180,21 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Override
-	public ArrayList<StudentDTO> searchStudent(String dptNo) {
-		// 특정과에 소속된 학생 조회
+ 	
+	public ArrayList<StudentDTO> searchStudent(String dptName) {
 		stdList = new ArrayList<StudentDTO> ();
 		try {
-			String sql = "SELECT * FROM student WHERE dptNo=?";
+			// 특정과에 소속된 학생 학과번호로 조회
+			// String sql = "SELECT * FROM student WHERE dptNo=?";
+			// 특정과에 소속된 학생 학과이름으로 조회
+			String sql = "SELECT S.stdno, S.stdName, S.grade, S.stdBirth, D.dptName " 
+					+ "FROM student S "
+					+ "INNER JOIN department D ON D.dptNo = S.dptNo "
+					+ "WHERE D.dptName=? "
+					+ "ORDER BY S.stdNo";
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1,  dptNo);
+			pstmt.setString(1,  dptName);
 			
 			rs = pstmt.executeQuery();
 			
@@ -183,10 +203,10 @@ public class StudentDAOImpl implements StudentDAO {
 				String stdName = rs.getString(2);
 				int grade = rs.getInt(3);
 				Date stdBirth = rs.getDate(4);
-				dptNo = rs.getString(5);
+				dptName = rs.getString(5);
 				
 				// 각 컬럼의 정보를 dto 로 구성
-				std = new StudentDTO(stdNo, stdName, grade, stdBirth, dptNo);
+				std = new StudentDTO(stdNo, stdName, grade, stdBirth, dptName);
 				// ArrayList 에 추가
 				stdList.add(std);
 			}

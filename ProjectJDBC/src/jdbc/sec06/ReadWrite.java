@@ -47,8 +47,8 @@ public class ReadWrite {
 	// 출력 메소드
 	public static void writeStdInfo(ArrayList<StudentDTO> stdList) {
 		System.out.println("------ 전체 학생 정보 조회 ------");
-		System.out.format("%-10s\t %-10s\t %-4s \t%13s %5s\n", 
-				"학번", "이름", "학년", "생일", "학과번호");	
+		System.out.format("%-10s\t %-10s\t %-4s \t%13s %10s\n", 
+				"학번", "이름", "학년", "생일", "학과이름");	
 		
 		for(StudentDTO dto : stdList) {
 			String stdNo = dto.getStdNo();
@@ -58,7 +58,7 @@ public class ReadWrite {
 			String dptNo = dto.getDptNo();
 			
 			// 한 행씩 출력 
-			System.out.format("%-10s\t %-10s\t %-4d \t%13s %5s\n", 
+			System.out.format("%-10s\t %-10s\t %-4d \t%13s %10s\n", 
 								stdNo, stdName, grade, stdBirth, dptNo);
 		}
 	}
@@ -66,8 +66,8 @@ public class ReadWrite {
 	// 출력 메소드
 	public static void writeStdInfo(StudentDTO dto) {
 		System.out.println("------ 학생 정보 조회 ------");
-		System.out.format("%-10s\t %-10s\t %-4s \t%13s %5s\n", 
-				"학번", "이름", "학년", "생일", "학과번호");	
+		System.out.format("%-10s\t %-10s\t %-4s \t%13s %10s\n", 
+				"학번", "이름", "학년", "생일", "학과이름");	
 		
 		String stdNo = dto.getStdNo();
 		String stdName = dto.getStdName();
@@ -76,8 +76,7 @@ public class ReadWrite {
 		String dptNo = dto.getDptNo();
 			
 		// 한 행씩 출력 
-		System.out.format("%-10s\t %-10s\t %-4d \t%13s %5s\n", 
+		System.out.format("%-10s\t %-10s\t %-4d \t%13s %10s\n", 
 							stdNo, stdName, grade, stdBirth, dptNo);
-		
 	}
 }

@@ -14,6 +14,7 @@ public class Main {
 		ArrayList<StudentDTO> stdList = null;
 		String stdNo;
 		String dptNo;
+		String dptName;
 		
 		try {
 			// 1 학생정보 입력
@@ -33,9 +34,13 @@ public class Main {
 			dao.updateStudent(ReadWrite.getStdInfo(scan));
 			
 			// 4 학과 번호를 통한 검색 
-			System.out.println("학과번호를 입력하세요: ");
-			dptNo = scan.nextLine();
-			ReadWrite.writeStdInfo(dao.searchStudent(dptNo));
+			// System.out.print("학과번호를 입력하세요: ");
+			// dptNo = scan.nextLine();
+			// ReadWrite.writeStdInfo(dao.searchStudent(dptNo));
+			// 4 학과 이름을 통한 검색
+			System.out.print("학과이름을 입력하세요:");
+			dptName = scan.nextLine();
+			ReadWrite.writeStdInfo(dao.searchStudent(dptName));
 			
 			// 5 학생정보 삭제
 			System.out.print("삭제할 학생의 학번을 입력하세요: ");
