@@ -11,7 +11,7 @@ public class ProductMain {
 	public static void main(String[] args) {
 		// Book 테이블의 data 조회
 		// 필요 객체 생성
-		PrdDBConn dbConn = new PrdDBConn();
+		DBConnect dbConn = new DBConnect();
 		Connection conn = dbConn.getConnection();
 		Statement stmt = null;
 		ResultSet rs = null;
