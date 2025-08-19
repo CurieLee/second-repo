@@ -7,6 +7,13 @@ public class Run {
 		testGet();
 		testRemove();
 		testForEach();
+		testSet();
+	}
+	
+	private static void testSet() {
+		ArrayList<Integer> list = init();
+		list.set(0, 10);
+		System.out.println(list);
 	}
 	
 	private static void testForEach() {
