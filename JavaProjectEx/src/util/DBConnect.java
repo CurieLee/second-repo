@@ -1,0 +1,124 @@
+package util;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+// DB 연결 및 종료 관리
+public class DBConnect {
+	// 데이터베이스 연결 후
+	// connection 객체를 반환하는 메소드 
+	public static Connection getConnection() {	
+		Connection conn = null;
+		
+		try {
+			String url = "jdbc:oracle:thin:@localhost:1521:sdb";
+			String user = "USER_SELECT";
+			String pwd = "1234";
+				
+			conn = DriverManager.getConnection(url, user, pwd);
+				
+			if (conn != null) {
+				System.out.println("DB connect success");
+			} else {
+				System.out.println("DB connect fail");
+			}
+		} catch (Exception e ) {
+			e.printStackTrace();
+		}
+			
+		return conn;
+	}
+		
+	// 자원 반환 메소드: close()
+	// static 으로 구성, 반환되는 자원에 따라 다르게 사용하도록 메소드 오버로딩
+		
+	// 1 Connection, PreparedStatement, ResultSet 자원 3개 반환
+	public static void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
+		try {
+			if (rs != null) {
+				rs.close();
+				rs = null;
+			}
+				
+			if (pstmt != null) {
+				pstmt.close();
+				pstmt = null;
+			}
+				
+			if (conn != null) {
+				conn.close();
+				conn = null;
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+		
+	// 2 Connection, PreparedStatement 자원 2개 반환
+	public static void close(Connection conn, PreparedStatement pstmt) {
+		try {
+			if (pstmt != null) {
+				pstmt.close();
+				pstmt = null;
+			}
+				
+			if (conn != null) {
+				conn.close();
+				conn = null;
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 3 Connection 자원 1개 반환
+	public static void close(Connection conn) {
+		try {	
+			if (conn != null) {
+			conn.close();
+			conn = null;
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 4 PreparedStatement, ResultSet 자원 2개 반환
+	public static void close(PreparedStatement pstmt, ResultSet rs) {
+		try {
+			if (rs != null) {
+				rs.close();
+				rs = null;
+			}
+				
+			if (pstmt != null) {
+				pstmt.close();
+				pstmt = null;
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 5 PreparedStatement자원 1개 반환
+	public static void close(PreparedStatement pstmt) {
+		try {
+			if (pstmt != null) {
+				pstmt.close();
+				pstmt = null;
+			}
+							
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}	
+
+}
+
