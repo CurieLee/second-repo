@@ -9,11 +9,11 @@ public class Run {
 
 	public static void main(String[] args) {
 		System.out.println(init());
-		// testGet();
-		// testRemove();
-		// testForEach();
-		//testSet();
-		testSort();
+		testGet();
+		testRemove();
+		testForEach();
+		testSet();
+		// testSort();
 	}
 	private static void testSort() {
 		School seoulUni = new School("서울대", "관악구", "대학교");
@@ -36,24 +36,25 @@ public class Run {
 	}
 	
 	private static void testSet() {
-		_ArrayList<Integer> list = init();
+		_LinkedList<Integer> list = init();
 		list.set(0, 10);
 		System.out.println(list);
 	}
 	
 	private static void testForEach() {
 		// 제어반전 IOC
-		_ArrayList<Integer> list = init();
+		_LinkedList<Integer> list = init();
 		for (Integer integer : list) {
-			System.out.println(integer);
+			System.out.print(integer + " ");
 		}
+		System.out.println();
 		
 		// Iterable
 		// hasNext, Next
 	}
 	
-	private static _ArrayList<Integer> init() {
-		_ArrayList<Integer> list = new _ArrayList<Integer> ();
+	private static _LinkedList<Integer> init() {
+		_LinkedList<Integer> list = new _LinkedList<Integer> ();
 		for (int i = 0; i < 15; i++) {
 			list.add(i);
 		}
@@ -62,14 +63,14 @@ public class Run {
 	}
 	
 	private static void testGet() {
-		_ArrayList<Integer> list = init();
+		_LinkedList<Integer> list = init();
 		for (int i = 5; i < 8; i++) {
 			System.out.println(list.get(i));
 		}
 	}
 	
 	private static void testRemove() {
-		_ArrayList<Integer> list = init();
+		_LinkedList<Integer> list = init();
 		for (int i = 5; i < 8; i++) {
 			list.remove(i);
 		}
