@@ -8,17 +8,26 @@ import java.util.Vector;
 import util.DBConnect;
 
 public class BookDAOImpl implements BookDAO {
+	
+	private final Connection con;
+	
+	// DB 연결 횟수를 줄이기 위해 생성자를 통해 주입받음
+	// 메소드에서 DBConnect.getConnection() 호출 x
+	public BookDAOImpl(Connection con) {
+		this.con = con;
+	}
 
 	@Override
 	public Vector<BookDTO> getAllBook() throws Exception {
 		// 전체 도서 정보 조회
-		Connection con = null;
+		
+		// Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Vector<BookDTO> dataset = null;
 		
 		try {
-			con = DBConnect.getConnection();
+			// con = DBConnect.getConnection();
 			pstmt = con.prepareStatement("SELECT * FROM book ORDER BY bookNo");
 			rs = pstmt.executeQuery();
 			dataset = new Vector<BookDTO> ();
@@ -38,7 +47,7 @@ public class BookDAOImpl implements BookDAO {
 		} catch (Exception e) {
 			throw e;
 		} finally {
-			DBConnect.close(con, pstmt);
+			DBConnect.close(pstmt, rs);
 		}
 		
 		return dataset;
@@ -47,11 +56,11 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public boolean insert(BookDTO dto) throws Exception {
 		// 한 권 도서정보 저장
-		Connection con = null;
+		// Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
-			con = DBConnect.getConnection();
+			// con = DBConnect.getConnection();
 			pstmt = con.prepareStatement("INSERT INTO book VALUES(?, ?, ?, ?, TO_DATE(?, 'YYYY-MM-DD'), ?, ?)");
 			pstmt.setString(1, dto.getBookNo());
 			pstmt.setString(2, dto.getBookName());
@@ -70,7 +79,7 @@ public class BookDAOImpl implements BookDAO {
 			// e.printStackTrace();
 			throw e; // 호출한 쪽에서 예외처리 하도록 예외를 인위적으로 발생-> 전달받은 Exception 넘김
 		} finally {
-			
+			DBConnect.close(pstmt);
 		}
 		
 		return true;
@@ -79,11 +88,11 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public boolean update(BookDTO dto) throws Exception {
 		// DB 테이블 내 정보 수정시 기본키 및 참조키 수정 x
-		Connection con = null;
+		// Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
-			con = DBConnect.getConnection();
+			// con = DBConnect.getConnection();
 			
 			String sql = "UPDATE book SET bookName=?, bookAuthor=?, bookPrice=?,"
 							+ "bookDate=TO_DATE(?, 'YYYY-MM-DD'), bookStock=? WHERE bookNo=?";
@@ -99,25 +108,26 @@ public class BookDAOImpl implements BookDAO {
 			int result = pstmt.executeUpdate();
 			if (result == 0) {
 				return false;
+			} else {
+				return true;
 			}
 			
 		} catch (Exception e) {
 			throw e;
 		} finally {
-			DBConnect.close(con, pstmt);
+			DBConnect.close(pstmt);
 		}
-		return false;
 	}
 
 	@Override
 	public boolean delete(BookDTO dto) throws Exception {
 		// DTO 의 bookNo 필드에 저장된 도서번호 도서 삭제
-		Connection con = null;
+		// Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
-			con = DBConnect.getConnection();
-			String sql = "DELETE book WHERE bookNo=?";
+			// con = DBConnect.getConnection();
+			String sql = "DELETE FROM book WHERE bookNo=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,  dto.getBookNo());
 			
@@ -125,14 +135,14 @@ public class BookDAOImpl implements BookDAO {
 			
 			if (result == 0) {
 				return false;
+			} else  {
+				return true;
 			}
 		} catch (Exception e) {
 			throw e;
 		} finally {
-			DBConnect.close(con, pstmt);
+			DBConnect.close(pstmt);
 		}
-	
-		return false;
 	}
 
 }

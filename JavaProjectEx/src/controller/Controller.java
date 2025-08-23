@@ -8,6 +8,7 @@ import view.BookListView;
 import view.ResultView;
 
 import java.util.Vector;
+import java.sql.Connection;
 
 // View 별로 컨트롤러 구성-> DAO 접근 통로가 많아짐
 // DB 사용 제어 불가능 
@@ -15,6 +16,11 @@ import java.util.Vector;
 public class Controller {
 	// 본인 객체 인스턴스를 본인이 제공: private static 객체 구성
 	private static Controller instance = new Controller();
+	private BookDAO dao;
+	
+	public void init(Connection con) {
+		this.dao = new BookDAOImpl(con);
+	}
 	
 	private Controller() {
 		// new 연산자로 생성자 호출 불가능하게 막음
@@ -26,8 +32,8 @@ public class Controller {
 	}
 	
 	////////////////// 데이터 처리 메소드 //////////////////
-	BookDAOImpl dao_impl = new BookDAOImpl(); // BookDAO 가 값고있는 모든 메소드 사용 가능
-	BookDAO dao = new BookDAOImpl(); // BookImpl 가 갖고있는 메소드만 사용 가능
+	// BookDAOImpl dao_impl = new BookDAOImpl(); // BookDAO 가 값고있는 모든 메소드 사용 가능
+	// BookDAO dao = new BookDAOImpl(); // BookImpl 가 갖고있는 메소드만 사용 가능
 	
 	// DAO 메소드들은 예외를 호출하는 쪽으로 throw 진행-> controller 예외처리
 	public void insert(BookDTO newDto) {

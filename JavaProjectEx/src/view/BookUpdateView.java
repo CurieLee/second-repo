@@ -19,9 +19,6 @@ public class BookUpdateView {
 		System.out.println("****************************************");
 		System.out.println();
 		
-		BookListView bls = new BookListView();
-		bls.getAllBook();
-		
 		System.out.print("수정할 도서번호 입력 : ");		
 		bookNo = scan.nextLine();
 		
@@ -42,10 +39,13 @@ public class BookUpdateView {
 		
 		// System.out.print("출판사번호 입력 : ");	
 		// pubNo = scan.nextLine();	
-		System.out.println("****************************************");
+		System.out.println();
 		
 		// 컨트롤러 메소드에 입력받은 데이터 전달 ~ DAO 까지 전달되어야함
 		//controller.update(new BookDTO(bookNo, bookName, bookAuthor,bookPrice, bookDate,bookStock, pubNo));
 		controller.update(new BookDTO(bookNo, bookName, bookAuthor,bookPrice, bookDate,bookStock, null));
+		
+		BookListView bls = new BookListView();
+		bls.getAllBook();
 	}
 }
