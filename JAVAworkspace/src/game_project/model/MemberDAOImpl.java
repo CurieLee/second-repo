@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 import game_project.util.DBConnect;
+import game_project.view.ResultView;
 
 public class MemberDAOImpl implements MemberDAO {
 
@@ -16,13 +17,13 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		try {
 			con = DBConnect.getConnection();
-			pstmt = con.prepareStatement("INSERT INTO member VALUES(?, ?, ?, ?, ?, ?)");
+			pstmt = con.prepareStatement("INSERT INTO member(user_id, password, name, email, phone)"
+										+ " VALUES(?, ?, ?, ?, ?)");
 			pstmt.setString(1, dto.getUser_id());
 			pstmt.setString(2, dto.getPassword());
 			pstmt.setString(3, dto.getName());
 			pstmt.setString(4, dto.getEmail());
 			pstmt.setString(5, dto.getPhone()); 
-			pstmt.setString(6, dto.getReg_date());
 		
 			int result = pstmt.executeUpdate();
 			if (result == 0) {
@@ -57,16 +58,13 @@ public class MemberDAOImpl implements MemberDAO {
 			pstmt.setString(5, dto.getUser_id());
 			
 			int result = pstmt.executeUpdate();
-			if (result == 0) {
-				return false;
-			}
+			return result > 0;
 			
 		} catch (Exception e) {
 			throw e;
 		} finally {
 			DBConnect.close(con, pstmt);
 		}
-		return false;
 	}
 
 	@Override
@@ -83,15 +81,16 @@ public class MemberDAOImpl implements MemberDAO {
 			int result = pstmt.executeUpdate();
 			
 			if (result == 0) {
+
 				return false;
+			} else {
+				return true;
 			}
 		} catch (Exception e) {
 			throw e;
 		} finally {
 			DBConnect.close(con, pstmt);
 		}
-	
-		return false;
 	}
 
 	@Override
@@ -113,7 +112,7 @@ public class MemberDAOImpl implements MemberDAO {
 						rs.getString(2), 
 						rs.getString(3),
 						rs.getString(4), 
-						rs.getDate(5).toString(),
+						rs.getString(5),
 						rs.getString(6)
 					));
 			}

@@ -31,7 +31,7 @@ public class Controller {
 			if (dao.join(dto))
 				ResultView.successMsg("회원가입이 완료되었습니다.");
 		} catch (Exception e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 			ResultView.errorMsg("회원가입 오류");
 		}
 		
@@ -48,6 +48,8 @@ public class Controller {
 			
 			if (dao.update(dto)) {
 				ResultView.successMsg("회원 정보가 수정되었습니다.");
+			} else {
+				ResultView.errorMsg("회원 정보 수정 오류");
 			}
 			
 		} catch (Exception e) {
@@ -88,10 +90,13 @@ public class Controller {
 	public boolean login(String user_id, String password) {
 		try {
 	        MemberDTO dto = dao.login(user_id, password);
-	        if (dto != null)
+	        if (dto != null) {
+	        	ResultView.successMsg(user_id + "님! 환영합니다.");
 	        	return true;
-	        else
+	        } else {
+	        	ResultView.errorMsg("아이디와 비밀번호를 확인해주세요.");
 	        	return false;
+	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        ResultView.errorMsg("로그인 중 오류가 발생했습니다.");

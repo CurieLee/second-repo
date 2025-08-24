@@ -9,6 +9,15 @@ public class MemberDTO {
 	String reg_date;
 	
 	public MemberDTO() {}
+	public MemberDTO(String user_id, String password, String name, String email, String phone) {
+		this.user_id = user_id;
+		this.password = password;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.reg_date = reg_date;
+	}
+	
 	public MemberDTO(String user_id, String password, String name, String email, 
 					 String phone, String reg_date) {
 		this.user_id = user_id;
@@ -53,6 +62,10 @@ public class MemberDTO {
 	}
 	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
+	}
+	
+	public String toString() {
+		return user_id + "\t" + password + "\t" + name + "\t" + email + "\t" + phone + "\t" + reg_date;
 	}
 	
 	

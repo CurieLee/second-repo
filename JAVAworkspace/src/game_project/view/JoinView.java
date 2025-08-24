@@ -33,6 +33,6 @@ public class JoinView {
         System.out.print("전화번호: ");
         phone = scan.nextLine().trim();
 		
-        controller.join(new MemberDTO(user_id, password, name, email, phone, null));
+        controller.join(new MemberDTO(user_id, password, name, email, phone));
 	}
 }

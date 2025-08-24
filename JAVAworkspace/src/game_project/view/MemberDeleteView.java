@@ -11,17 +11,18 @@ public class MemberDeleteView {
 	public void delete() {
 		String user_id;
 		
-		System.out.println("\n*************************");
+		System.out.println();
+		System.out.println("************************************");
 		System.out.println("학생정보 삭제");
-		System.out.println("***************************");
+		System.out.println("************************************");
 		
 		MemberListView mlv = new MemberListView();
 		mlv.getAllMember();
 		
 		System.out.print("삭제할 회원 아이디 입력: ");
 		user_id = scan.nextLine();
-		System.out.println("\n*************************");
 		
+		System.out.println();
 		controller.delete(user_id);
 		
 	}
