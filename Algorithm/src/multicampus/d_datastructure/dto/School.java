@@ -1,5 +1,7 @@
 package multicampus.d_datastructure.dto;
 
+import java.util.Objects;
+
 public class School implements Comparable<School> {
 	
 	private String name;
@@ -42,4 +44,19 @@ public class School implements Comparable<School> {
  		return this.level.compareTo(o.level);
 	}
 	
+	@Override
+	public int hashCode() {
+		return Objects.hash(address, level, name);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)	return true;
+		if (obj == null)	return false;
+		if (getClass( ) != obj.getClass())	return false;
+		
+		School other = (School) obj;
+		return Objects.equals(address,  other.address) && Objects.equals(level,  other.level)
+				&& Objects.equals(name, other.name);
+	}
 }
