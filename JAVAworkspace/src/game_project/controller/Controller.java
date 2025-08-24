@@ -1,6 +1,7 @@
 package game_project.controller;
 
 import java.util.Vector;
+import java.sql.Connection;
 
 import game_project.model.MemberDAO;
 import game_project.model.MemberDAOImpl;
@@ -11,13 +12,17 @@ import game_project.view.ResultView;
 public class Controller {
 
 	private static Controller instance = new Controller();
+	private MemberDAO dao;
+	
+	public void init(Connection con) {
+		this.dao = new MemberDAOImpl(con);
+	}
+	
 	private Controller() {}
 	
 	public static Controller getInstance() {
 		return instance;
 	}
-	
-	MemberDAO dao = new MemberDAOImpl();
 
 	public void join(MemberDTO newDTO) {
 		try {
