@@ -7,6 +7,10 @@ public class Node<E> {
 	
 	public Node() {}
 	
+	public Node(E e) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Node<E> next() {
 		return next;
 	}
