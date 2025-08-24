@@ -1,5 +1,10 @@
 package multicampus.f2_lamda;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
 import multicampus.f2_lamda.function.Consumer;
 import multicampus.f2_lamda.function.Supplier;
 import multicampus.f2_lamda.function.Function;
@@ -41,6 +46,13 @@ public class _Lamda {
 		
 		// 메소드 참조
 		testConsumer(System.out::println);
+		
+		List<Integer> nums = new ArrayList<Integer>(List.of(11, 23, 415, 1, 656));
+		//nums = nums.stream().map(e -> e * 10).toList();
+		
+		Collections.sort(nums, (e, f) -> e - f);
+		System.out.println(nums);
+		
 	}
 	
 	public static void testConsumer(Consumer<String> fnc) {
