@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/curiepong/eclipse-workspace/lib/javase-3.5.3.jar"/>
+	<classpathentry kind="lib" path="/Users/curiepong/eclipse-workspace/lib/gson-2.13.1.jar"/>
+	<classpathentry kind="lib" path="/Users/curiepong/eclipse-workspace/lib/core-3.5.3.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/mc_llm"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
